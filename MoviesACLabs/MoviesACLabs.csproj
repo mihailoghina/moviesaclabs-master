@@ -102,9 +102,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angularjscont.html" />
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
     <Content Include="lab3.html" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angularjscont.js" />
     <Content Include="Scripts\jquery-1.12.3.js" />
     <Content Include="Scripts\jslab3.js" />
     <Content Include="Scripts\jsS4.js" />

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html ng-app="movies">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angularjscont.js"></script>  
+</head>
+
+<body ng-controller="MoviesCtrl">
+
+    <button>get movies!</button>
+
+    <ul>
+        <li ng-repeat="x in moviesList.data">{{x.Title}} {{x.Description}}</li>
+    </ul>
+
+    <form>
+        Title: <input type="text" name="Title" ng-model="movie.Title"/></br>
+        Description: <input type="text" name="Description" ng-model="movie.Description" /></br>
+        Actor name: <input type="text" name="ActorName" /></br>
+        Actor DateOfBirth: <input type="text" name="ActorName" /></br>
+        Actor Revenue: <input type="text" name="ActorRevenue" /></br>
+        Review Comment: <input type="text" name="ReviewComment" /></br>
+        Review Rating: <input type="text" name="ReviewRating" /></br>
+        <button type="submit" ng-click="addClick()" value="submit">Add movie!</button>
+    </form>
+    <br/>
+    <p>stergere</p> <br />
+
+    <form>
+        Film de sters<input type="text" ng-model="stergefilm.Title" /></br>
+        <button type="submit" ng-click="deleteClick()" >Sterge Filmul!<</button>
+    </form>
+    <ul>
+        <li ng-repeat="x in moviesList.data | filter : stergefilm.Title">{{x.Title}}</li>
+    </ul>
+
+</body>
+
+</html>
