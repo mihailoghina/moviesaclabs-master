@@ -111,6 +111,25 @@ namespace MoviesACLabs.Controllers
             return Ok();
         }
 
+        [Route("~/filter2/{revenue}")]
+        public IList<ActorModel> GetRevenue(int revenue)
+        {
+            var actors = db.Actors;
+            var filtered = actors.Where(e => e.Revenue > revenue).ToArray();
+            if (filtered == null)
+            {
+                return null;
+            }
+            if (!filtered.Any())
+            {
+                return null;
+            }
+
+            var ret = Mapper.Map<IList<ActorModel>>(filtered);
+            return ret;
+        }
+         
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

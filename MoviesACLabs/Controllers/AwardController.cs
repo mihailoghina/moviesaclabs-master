@@ -1,60 +1,132 @@
-﻿using MoviesACLabs.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
+using MoviesACLabs.Data;
+using MoviesACLabs.Models;
+using AutoMapper;
+using MoviesACLabs.Entities;
 
 namespace MoviesACLabs.Controllers
 {
     public class AwardController : ApiController
     {
-        private static int svar = 0;
 
-        public static List<AwardModel> awardsList = new List<AwardModel>();
+        private MoviesContext db = new MoviesContext();
 
-        public void PostAward(AwardModel am)
+        public IList<AwardModel> GetAwards()
         {
-            svar++;
-            am.Id = svar;
-            awardsList.Add(am);
+            var awards = db.Awards;
+            var awardsModel = Mapper.Map<IList<AwardModel>>(awards);
+            return awardsModel;
         }
 
-        [Route("myAwards/{Id}")]
-        public AwardModel GetAwardById(int id)
+        public IHttpActionResult PostAward(AwardModel awardModel)
         {
-            foreach (AwardModel x in awardsList)
+            if (!ModelState.IsValid)
             {
-                if (x.Id == id)
+                return BadRequest(ModelState);
+            }
+            var award = Mapper.Map<Award>(awardModel);
+
+            db.Awards.Add(award);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = award.Id }, award);
+        }
+
+        public IHttpActionResult DeleteAward(int id)
+        {
+            Award award = db.Awards.Find(id);
+            if (award == null)
+            {
+                return NotFound();
+            }
+
+            db.Awards.Remove(award);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        public IHttpActionResult PutAward(int id, AwardModel awardModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != awardModel.Id)
+            {
+                return BadRequest();
+            }
+
+            var award = Mapper.Map<Award>(awardModel);
+
+            db.Entry(award).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AwardExists(id))
                 {
-                    return x;
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
                 }
             }
-            return null;
-        }
-       
-        public List<AwardModel> GetAwards()
-        {
-            return awardsList;
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        public void PutAward(int id, AwardModel am)
+        public IHttpActionResult GetAward(int id)
         {
-
-            for(var i = 0; i < awardsList.Count(); i++)
-                if (awardsList[i].Id == id)
-                awardsList[i] = am;
-
-        }
-
-        public void DeleteAward(int id)
-        {
-            if (GetAwardById(id) != null)
+            Award award = db.Awards.Find(id);
+            if (award == null)
             {
-                awardsList.Remove(GetAwardById(id));
-            }      
+                return NotFound();
+            }
+
+            var awardModel = Mapper.Map<AwardModel>(award);
+
+            return Ok(awardModel);
         }
 
-    }        
+        [Route("~/filter/{name}")]
+        public IHttpActionResult GetAwardByName(string name)
+        {
+            var awards = db.Awards;
+            var filtered = awards.Where(e => e.Title == name).ToArray();
+            if (filtered == null)
+            {
+                return NotFound();
+            }
+            if (!filtered.Any())
+            {
+                return NotFound();
+            }
+            var ret = Mapper.Map<AwardModel>(filtered[0]);
+            return Ok(ret);
+        }
+
+
+        private bool AwardExists(int id)
+        {
+            return db.Awards.Any(e => e.Id == id);
+        }
+        
+
+
+    }
 }

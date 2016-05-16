@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html ng-app="entity">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/entity.js"></script>
+</head>
+<body ng-controller="EntityCtrl">
+    <div ng-repeat="x in actorsList">
+          
+        <ul ng-repeat="y in awardsList">
+            <li ng-if="x.Id == y.ActorID && y.Description.length == lungimeMax">{{x.Name}}-{{y.Title}}-{{y.Description}} --- {{lungimeMax}}</li>
+        </ul>
+    </div>
+</body>
+</html>
+<!-- -->
