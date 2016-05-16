@@ -7,34 +7,64 @@
     <script src="Scripts/angularjscont.js"></script>  
 </head>
 
+<h1>Options:</h1>
 <body ng-controller="MoviesCtrl">
+    <div class="abc">
+        <p><a href="#" ng-click="z = ! z">Show Movies</a></p>
+        <ul ng-repeat="x in moviesList">
+            <div ng-show="z">
+                <li>{{x.Title}} - {{x.Description}} - {{x.Actors.Name}} - {{x.Actors.DateOfBirth}}</li>
+            </div>
+        </ul>
+    </div>
 
-    <button>get movies!</button>
+    <div class="add">
+        <p><a href="#" ng-click="z2 = ! z2">Add Movie</a></p>
+        <form ng-show="z2">
+            Title: <input type="text" name="Title" ng-model="addTitle" /></br>
+            Description: <input type="text" name="Description" ng-model="addDescription" /></br>
+            <!--
+            Actor name: <input type="text" name="ActorName" /></br>
+            Actor DateOfBirth: <input type="text" name="ActorName" /></br>
+            Actor Revenue: <input type="text" name="ActorRevenue" /></br>
+            Review Comment: <input type="text" name="ReviewComment" /></br>
+            Review Rating: <input type="text" name="ReviewRating" /></br>
+                -->
+            <button type="submit" ng-click="addClick()" value="submit">Add movie!</button>
+        </form>
+    </div>
+    <div class="delete">
+        <p><a href="#" ng-click="z3 = ! z3">Delete Movie</a></p>
+        <form ng-show="z3">
+            Film de sters<input type="text" ng-model="deleteMovieByTitle" /></br>
+            <ul>
+                <li ng-repeat="x in moviesList | filter : deleteMovieByTitle">{{x.Title}}</li>
+            </ul>
+            <button ng-click="deleteClick()">Sterge Filmul!<</button>
+        </form>
+    </div>
 
-    <ul>
-        <li ng-repeat="x in moviesList.data">{{x.Title}} {{x.Description}}</li>
-    </ul>
+    <div class="edit">
+        <p><a href="#" ng-click="z4 = ! z4">Edit Movie</a></p>
+        <form ng-show="z4">
+           
+                id: <input type="text" name="editId" ng-model="editMovieById" /></br>
+                Title: <input type="text" name="Title" ng-model="title_e" /></br>
+                Description: <input type="text" name="Description" ng-model="description_e" /></br>
+                <button ng-click="editClick()">edit movie!</button>
+            </form>
+    </div>
 
-    <form>
-        Title: <input type="text" name="Title" ng-model="movie.Title"/></br>
-        Description: <input type="text" name="Description" ng-model="movie.Description" /></br>
-        Actor name: <input type="text" name="ActorName" /></br>
-        Actor DateOfBirth: <input type="text" name="ActorName" /></br>
-        Actor Revenue: <input type="text" name="ActorRevenue" /></br>
-        Review Comment: <input type="text" name="ReviewComment" /></br>
-        Review Rating: <input type="text" name="ReviewRating" /></br>
-        <button type="submit" ng-click="addClick()" value="submit">Add movie!</button>
-    </form>
-    <br/>
-    <p>stergere</p> <br />
-
-    <form>
-        Film de sters<input type="text" ng-model="stergefilm.Title" /></br>
-        <button type="submit" ng-click="deleteClick()" >Sterge Filmul!<</button>
-    </form>
-    <ul>
-        <li ng-repeat="x in moviesList.data | filter : stergefilm.Title">{{x.Title}}</li>
-    </ul>
+    <div class="srcid">
+        <p><a href="#" ng-click="z5 = ! z5">Search by ID</a></p>
+        <form ng-show="z5">
+            
+                id: <input type="text" ng-show="z5" name="editId" ng-model="filterid" /></br>
+                <button ng-click="z7 = ! z7">Search</button>
+                <ul ng-show="z7">
+                    <li ng-repeat="x in moviesList" ng-if="x.Id == filterid">{{x.Title}}</li>
+                </ul>
+            </form>
 
 </body>
 

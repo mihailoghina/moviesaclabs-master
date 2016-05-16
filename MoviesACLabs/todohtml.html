@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="plunker">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/todo.js"></script>  
+</head>
+
+<body ng-controller="MainCtrl">
+
+    <input ng-model="todoList" type="text" name="input">
+    <button ng-click="add()">Add</button>
+
+    <p ng-model="total">All: {{total}}</p>
+    <p ng-model="activelist">Active: {{activelist}}</p>
+    <p ng-model="activelist">Completed: {{total - activelist}}</p>
+
+    <div class="all">
+        <p><a href="#" ng-click="z = ! z">Show all</a></p>
+        <ul ng-repeat="a in todos">
+            <div ng-show="z">
+                <li>
+                    <input type="checkbox" ng-if="a.done == false" ng-click="unchecked($index)">
+                    <input type="checkbox" ng-if="a.done == true" ng-click="checked($index)" checked>
+                    {{a.name}}
+                    <button ng-click="delete($index)">Delete</button>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+    <div class="completed">
+        <p><a href="#" ng-click="z2 = ! z2">Completed</a></p>
+        <ul ng-repeat="a in todos" ng-if="a.done == true">
+            <div ng-show="z2">
+                <li>
+                    <input type="checkbox" ng-click="checked($index)" checked>
+                    {{a.name}}
+                    <button ng-click="delete($index)">Delete</button>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+    <div class="active">
+        <p><a href="#" ng-click="z3 = ! z3"2>Active</a></p>
+        <ul ng-repeat="a in todos" ng-if="a.done == false">
+            <div ng-show="z3">               
+                <li>
+                    <input type="checkbox"  ng-click="unchecked($index)">
+                    {{a.name}}
+                    <button ng-click="delete($index)">Delete</button>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+</body>
+
+</html>

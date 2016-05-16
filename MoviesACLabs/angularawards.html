@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html ng-app="awards">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angularjsawards.js"></script>
+</head>
+
+<h1>Options:</h1>
+<body ng-controller="AwardsCtrl">
+    <div class="abc">
+       <p><a href="#" ng-click="z = ! z">Show Awards</a></p> 
+        <ul ng-repeat="x in awardsList">
+            <div ng-show="z">  
+                <li>{{x.Title}} - {{x.Description}} </li>
+           </div>
+        </ul>
+    </div>
+
+    <div class="add">
+        <p><a href="#" ng-click="z2 = ! z2">Add Award</a></p>
+        <form ng-show="z2">
+            Title: <input type="text" name="Title" ng-model="addTitle" /></br>
+            Description: <input type="text" name="Description" ng-model="addDescription" /></br>
+            <!--
+            Actor name: <input type="text" name="ActorName" /></br>
+            Actor DateOfBirth: <input type="text" name="ActorName" /></br>
+            Actor Revenue: <input type="text" name="ActorRevenue" /></br>
+            Review Comment: <input type="text" name="ReviewComment" /></br>
+            Review Rating: <input type="text" name="ReviewRating" /></br>
+                -->
+            <button type="submit" ng-click="addClick()" value="submit">Add award!</button>
+        </form>
+    </div>
+
+    <div class="delete">
+        <p><a href="#" ng-click="zz3 = ! zz3">Delete Award</a></p>
+        <form ng-show="zz3">
+            Film de sters<input type="text" ng-model="deleteAwardByTitle" /></br>
+            <ul>
+                <li ng-repeat="x in awardsList | filter : deleteAwardByTitle">{{x.Title}}</li>
+            </ul>
+            <button ng-click="deleteClick()">Delete Award!<</button>
+        </form>
+    </div>
+
+    <div class="edit">
+        <p><a href="#" ng-click="zz4 = ! zz4">Edit Award</a></p>
+        <form ng-show="zz4">
+           
+                id: <input type="text" name="editId" ng-model="editAwardById" /></br>
+                Title: <input type="text" name="Title" ng-model="title_e" /></br>
+                Description: <input type="text" name="Description" ng-model="description_e" /></br>
+                <button ng-click="editClick()">edit award!</button>
+            </form>
+    </div>
+
+    <div class="srcid">
+        <p><a href="#" ng-click="zz5 = ! zz5">Search by ID</a></p>
+        <form ng-show="zz5">
+            
+                id: <input type="text" ng-show="zz5" name="editId" ng-model="filterid" /></br>
+                <button ng-click="zz7 = ! zz7">Search</button>
+                <ul ng-show="zz7">
+                    <li ng-repeat="x in awardsList" ng-if="x.Id == filterid">{{x.Title}}</li>
+                </ul>
+            </form>
+
+</body>
+
+</html>

@@ -14,14 +14,13 @@ namespace MoviesACLabs.Controllers
 
         public static List<AwardModel> awardsList = new List<AwardModel>();
 
-        
-
         public void PostAward(AwardModel am)
         {
             svar++;
             am.Id = svar;
             awardsList.Add(am);
         }
+
         [Route("myAwards/{Id}")]
         public AwardModel GetAwardById(int id)
         {
@@ -34,34 +33,21 @@ namespace MoviesACLabs.Controllers
             }
             return null;
         }
-        /*
-        public AwardModel GetAward(string Title2)
-        {
-            foreach (AwardModel x in awardsList)
-            {
-                if (x.Title == Title2)
-                {
-                    return x;
-                }
-           
-            }
-            return null;
-        }*/
-        
+       
         public List<AwardModel> GetAwards()
         {
             return awardsList;
         }
-/*
+
         public void PutAward(int id, AwardModel am)
         {
-            for (int i = 0; i < awardsList.Count; i++)
 
-            
-            if(am.ActorID != null)
-            awardsList.Insert(abc.Id, am);
+            for(var i = 0; i < awardsList.Count(); i++)
+                if (awardsList[i].Id == id)
+                awardsList[i] = am;
+
         }
-*/
+
         public void DeleteAward(int id)
         {
             if (GetAwardById(id) != null)
