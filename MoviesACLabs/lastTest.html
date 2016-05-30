@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html ng-app="test">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/lastTest.js"></script>
+</head>
+
+<h1>Options:</h1>
+<body>
+    <div ng-controller="PlayersCtrl">
+        <div class="abc">
+            <p><a href="#" ng-click="z = ! z">Show Players</a></p>
+            <ul ng-repeat="x in playersList">
+                <div ng-show="z">
+                    <li>{{x.Id}} - {{x.Name}} - {{x.Age}} - {{x.Goals}}</li>
+                </div>
+            </ul>
+        </div>
+
+        <div class="add">
+            <p><a href="#" ng-click="z2 = ! z2">Add player</a></p>
+            <form ng-show="z2">
+                Age: <input type="text"  ng-model="addAge" /></br>
+                Name: <input type="text" ng-model="addName" /></br>
+                Goals: <input type="text"  ng-model="addGoals" /></br>
+                <button type="submit" ng-click="addClick()" value="submit">Add player!</button>
+            </form>
+        </div>
+    </div> <!-- players controller -->
+
+    <div ng-controller="FootballCtrl">
+        <div class="abc2">
+            <p><a href="#" ng-click="z3 = ! z3">Show Football</a></p>
+            <ul ng-repeat="y in footballList">
+                <div ng-show="z3">
+                    <li>{{y.Id}} - {{y.Name}} - {{y.Country}}</li>
+                </div>
+            </ul>
+        </div>
+
+        <div class="add2">
+            <p><a href="#" ng-click="z4 = ! z4">Add football club</a></p>
+            <form ng-show="z4">
+                Country: <input type="text" ng-model="addCountry" /></br>
+                Name: <input type="text" ng-model="addName" /></br>
+                <button type="submit" ng-click="addClick()" value="submit">Add Football club!</button>
+            </form>
+        </div>
+        <!--
+        <div class="add2">
+            <p><a href="#" ng-click="z5 = ! z5">Football clubs with 2 vowels</a></p>
+            <ul ng-repeat="z in vowels">
+                <div ng-show="z3">
+                    <li>{{z.Name}}</li>
+                </div>
+            </ul>
+        </div>
+            -->
+    </div> 
+
+    
+</body>
+
+</html>

@@ -16,7 +16,7 @@ var position = 2;
 var lungime = cats.length;
 
 var image = document.getElementById("poza");
-bar background = document.
+
 
 function functionPrevious() {
     

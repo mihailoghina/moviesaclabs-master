@@ -108,6 +108,7 @@
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
     <Content Include="lab3.html" />
+    <Content Include="lastTest.html" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angularjsawards.js" />
     <Content Include="Scripts\angularjscont.js" />
@@ -115,6 +116,7 @@
     <Content Include="Scripts\jquery-1.12.3.js" />
     <Content Include="Scripts\jslab3.js" />
     <Content Include="Scripts\jsS4.js" />
+    <Content Include="Scripts\lastTest.js" />
     <Content Include="Scripts\Main.js" />
     <Content Include="Scripts\todo.js" />
     <Content Include="Styles\csslab3.css" />
@@ -130,12 +132,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ActorsController.cs" />
     <Compile Include="Controllers\AwardController.cs" />
+    <Compile Include="Controllers\FootballController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Data\MoviesContext.cs" />
+    <Compile Include="Data\PlayersContext.cs" />
     <Compile Include="Entities\Actor.cs" />
     <Compile Include="Entities\Award.cs" />
+    <Compile Include="Entities\Football.cs" />
     <Compile Include="Entities\Movie.cs" />
+    <Compile Include="Entities\Players.cs" />
     <Compile Include="Entities\Review.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -148,10 +155,16 @@
     <Compile Include="Migrations\201605161135487_Award.Designer.cs">
       <DependentUpon>201605161135487_Award.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605301311583_Add2.cs" />
+    <Compile Include="Migrations\201605301311583_Add2.Designer.cs">
+      <DependentUpon>201605301311583_Add2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActorModel.cs" />
     <Compile Include="Models\AwardModel.cs" />
+    <Compile Include="Models\FootballModel.cs" />
     <Compile Include="Models\MovieModel.cs" />
+    <Compile Include="Models\PlayersModel.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -173,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605161135487_Award.resx">
       <DependentUpon>201605161135487_Award.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605301311583_Add2.resx">
+      <DependentUpon>201605301311583_Add2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
